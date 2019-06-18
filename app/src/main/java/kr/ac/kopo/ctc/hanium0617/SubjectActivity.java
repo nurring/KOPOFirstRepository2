@@ -1,34 +1,28 @@
 package kr.ac.kopo.ctc.hanium0617;
 
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TableRow;
+import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 
-import androidx.appcompat.widget.Toolbar;
 
-import javax.security.auth.Subject;
-
-public class MainActivity extends AppCompatActivity {
+public class SubjectActivity extends AppCompatActivity {
 
     Toolbar mytoolbar;
-    ViewFlipper v_flipper;
+    LinearLayout sinfo, srefund;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
+        setContentView(R.layout.activity_subject);
         //툴바 사용 설정
         mytoolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mytoolbar);
@@ -39,42 +33,30 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true); //왼쪽 버튼 사용
         actionBar.setHomeAsUpIndicator(R.drawable.menu); //왼쪽 버튼 아이콘
 
+        //fragment 지정
+        sinfo = (LinearLayout) findViewById(R.id.subject_info);
+        srefund = (LinearLayout) findViewById(R.id.subject_refund);
 
-        //이미지 배열
-        int images[] = {R.drawable.switch1, R.drawable.switch2, R.drawable. switch3, R.drawable.switch4};
-        v_flipper = findViewById(R.id.v_flipper);
-
-        //for loop
-        for (int image: images){
-            flipperImages(image);
-        }
-        TableRow tableRow = (TableRow)findViewById(R.id.row3);
-        tableRow.setOnClickListener(new View.OnClickListener(){
+        sinfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(),
-                        SubjectActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment1 fragment1 = new Fragment1();
+                transaction.replace(R.id.main_frame, fragment1);
+                transaction.commit();
             }
-
-
         });
 
+        srefund.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment2 fragment2 = new Fragment2();
+                transaction.replace(R.id.main_frame, fragment2);
+                transaction.commit();
+            }
+        });
     }
-    //이미지 flipping
-    public void flipperImages(int image) {
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundResource(image);
-
-        v_flipper.addView(imageView);
-        v_flipper.setFlipInterval(3000); //3 sec
-        v_flipper.setAutoStart(true);
-
-        //animation
-        v_flipper.setInAnimation(this, android.R.anim.slide_in_left);
-        v_flipper.setOutAnimation(this, android.R.anim.slide_out_right);
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,5 +77,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }
