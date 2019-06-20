@@ -2,22 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/toolbar_search"
+        android:title="search"
+        android:icon="@drawable/ic_search_black_24dp"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/toolbar_user"
+        android:title="user"
+        android:icon="@drawable/ic_person_black_24dp"
+        app:showAsAction="always"
+        />
 
-    <!--<item-->
-        <!--android:id="@+id/menu_search"-->
-        <!--android:title="search"-->
-        <!--android:icon="@drawable/leftarrow"-->
-        <!--app:showAsAction="always"-->
-        <!--/>-->
-    <group>
-        <item
-            android:id="@+id/first"
-            android:title="111"
-            />
-        <item
-            android:id="@+id/second"
-            android:title="222"
-            />
-    </group>
 
 </menu>

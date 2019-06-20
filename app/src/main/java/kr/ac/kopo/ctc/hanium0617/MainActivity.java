@@ -16,8 +16,6 @@ import android.widget.ViewFlipper;
 
 import androidx.appcompat.widget.Toolbar;
 
-import javax.security.auth.Subject;
-
 public class MainActivity extends AppCompatActivity {
 
     Toolbar mytoolbar;
@@ -28,16 +26,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        //툴바 사용 설정
+        //툴바
         mytoolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mytoolbar);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 ㄱㄱ
         actionBar.setDisplayShowTitleEnabled(false); //타이틀 노출
-        actionBar.setDisplayHomeAsUpEnabled(true); //왼쪽 버튼 사용
-        actionBar.setHomeAsUpIndicator(R.drawable.menu); //왼쪽 버튼 아이콘
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_category_24dp); //왼쪽 버튼 아이콘
 
 
         //이미지 배열
@@ -48,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         for (int image: images){
             flipperImages(image);
         }
+
+        //다른 페이지로 이동
         TableRow tableRow = (TableRow)findViewById(R.id.row3);
         tableRow.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -59,8 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
-
     }
+
+
     //이미지 flipping
     public void flipperImages(int image) {
         ImageView imageView = new ImageView(this);
@@ -76,21 +74,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //툴바 메뉴 불러오기
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //툴바 왼쪽 버튼 활성화
         return true;
     }
+
+    //툴바
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
-//            case R.id.menu_search:
-//                Toast.makeText(this,"menu",Toast.LENGTH_SHORT).show();
-            case R.id.first:
-                Toast.makeText(this, "1111",Toast.LENGTH_SHORT).show();
+            case android.R.id.home:
+                Intent intent = new Intent(getApplicationContext(),
+                        CategoryActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.second:
-                Toast.makeText(this, "2222",Toast.LENGTH_SHORT).show();
+            case R.id.toolbar_search:
+                Toast.makeText(this, "search",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.toolbar_user:
+                Toast.makeText(this, "user",Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
