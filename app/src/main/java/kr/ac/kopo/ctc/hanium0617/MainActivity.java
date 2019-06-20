@@ -11,12 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableRow;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
+
 
     Toolbar mytoolbar;
     ViewFlipper v_flipper;
@@ -29,17 +29,17 @@ public class MainActivity extends AppCompatActivity {
         //툴바
         mytoolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mytoolbar);
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false); //타이틀 노출
         actionBar.setHomeAsUpIndicator(R.drawable.ic_category_24dp); //왼쪽 버튼 아이콘
+        actionBar.setDisplayHomeAsUpEnabled(true); //툴바 왼쪽 버튼 활성화
 
 
         //이미지 배열
         int images[] = {R.drawable.switch1, R.drawable.switch2, R.drawable. switch3, R.drawable.switch4};
         v_flipper = findViewById(R.id.v_flipper);
 
-        //for loop
+        //이미지 loop
         for (int image: images){
             flipperImages(image);
         }
@@ -76,9 +76,23 @@ public class MainActivity extends AppCompatActivity {
 
     //툴바 메뉴 불러오기
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) { //inflate the munu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //툴바 왼쪽 버튼 활성화
+//        MenuItem searchItem = menu.findItem(R.id.toolbar_search);
+//        final SearchView searchView = (SearchView)menu.findItem(R.id.toolbar_search).getActionView();
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                searchView.clearFocus();
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                adapter.getFilter().filter(s);
+//                return false;
+//            }
+//        });
         return true;
     }
 
@@ -91,11 +105,13 @@ public class MainActivity extends AppCompatActivity {
                         CategoryActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.toolbar_search:
-                Toast.makeText(this, "search",Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.toolbar_search:
+//                Toast.makeText(this, "search",Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.toolbar_user:
-                Toast.makeText(this, "user",Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(getApplicationContext(),
+                        NotloginActivity.class);
+                startActivity(intent1);
                 break;
         }
         return true;

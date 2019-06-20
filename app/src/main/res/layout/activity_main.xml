@@ -7,6 +7,7 @@
     android:background="#ffffff"
     tools:context=".MainActivity">
 
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
@@ -515,7 +516,6 @@
                                 android:stepSize="0.5" />
                         </LinearLayout>
                     </LinearLayout>
-
                 </TableRow>
             </TableLayout>
         </LinearLayout>

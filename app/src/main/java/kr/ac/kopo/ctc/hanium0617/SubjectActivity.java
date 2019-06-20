@@ -80,11 +80,13 @@ public class SubjectActivity extends AppCompatActivity {
                         CategoryActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.toolbar_search:
-                Toast.makeText(this, "1111",Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.toolbar_search:
+//                Toast.makeText(this, "1111",Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.toolbar_user:
-                Toast.makeText(this, "2222",Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(getApplicationContext(),
+                        NotloginActivity.class);
+                startActivity(intent1);
                 break;
         }
         return true;

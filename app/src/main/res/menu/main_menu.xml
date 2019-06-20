@@ -6,7 +6,9 @@
         android:id="@+id/toolbar_search"
         android:title="search"
         android:icon="@drawable/ic_search_black_24dp"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:queryHint="강좌를 검색하세요"
         />
     <item
         android:id="@+id/toolbar_user"

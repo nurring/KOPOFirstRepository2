@@ -52,6 +52,7 @@ public class CategoryActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false); //타이틀 노출
         actionBar.setHomeAsUpIndicator(R.drawable.ic_clear_24dp); //왼쪽 버튼 아이콘
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //expandablelistview 구현
         listView = (ExpandableListView)findViewById(R.id.category_Exp);
@@ -124,7 +125,6 @@ public class CategoryActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
 
@@ -137,11 +137,13 @@ public class CategoryActivity extends AppCompatActivity {
                         MainActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.toolbar_search:
-                Toast.makeText(this, "search",Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.toolbar_search:
+//                Toast.makeText(this, "search",Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.toolbar_user:
-                Toast.makeText(this, "user",Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(getApplicationContext(),
+                        NotloginActivity.class);
+                startActivity(intent1);
                 break;
         }
         return true;
